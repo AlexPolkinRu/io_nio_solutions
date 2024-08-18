@@ -19,7 +19,23 @@ Requirements:
 4. Потоки FileInputStream и FileOutputStream должны быть закрыты.*/
 
 public class Solution {
-    public static void main(String[] args) {
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static final List<Integer> bytes = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        String filenameInput = br.readLine();
+        String filenameOutput = br.readLine();
 
+        try (
+                FileInputStream fis = new FileInputStream(filenameInput);
+                FileOutputStream fos = new FileOutputStream(filenameOutput)
+        ) {
+            while (fis.available() > 0) {
+                bytes.add(fis.read());
+            }
+            Collections.reverse(bytes);
+            for (Integer b : bytes) {
+                fos.write(b);
+            }
+        }
     }
 }

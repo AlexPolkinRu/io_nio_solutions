@@ -18,6 +18,20 @@ Requirements:
 4. Поток чтения из файла должен быть закрыт.*/
 
 public class Solution {
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static int data, maxByte = 0;
+
     public static void main(String[] args) throws Exception {
+        String filename = br.readLine();
+
+        try (FileInputStream fis = new FileInputStream(filename)) {
+            while (fis.available() > 0) {
+                data = fis.read();
+                if (maxByte < data)
+                    maxByte = data;
+            }
+        }
+
+        System.out.println(maxByte);
     }
 }

@@ -29,6 +29,23 @@ Requirements:
 5. Поток чтения из файла должен быть закрыт.*/
 
 public class Solution {
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static final Set<Integer> set = new TreeSet<>();
+
     public static void main(String[] args) throws Exception {
+        String filename = br.readLine();
+
+        try (FileInputStream fis = new FileInputStream(filename)) {
+            int data;
+            while (fis.available() > 0) {
+                data = fis.read();
+                set.add(data);
+            }
+        }
+
+        for (Integer b : set) {
+            System.out.print(b + " ");
+        }
+
     }
 }
